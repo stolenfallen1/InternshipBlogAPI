@@ -1,9 +1,10 @@
 {
   "name": "InternshipBlogAPI",
   "version": "1.0.0",
-  "description": "backend (api) for internship blog",
+  "description": "server side (API) for internship blog",
   "main": "index.js",
-  "author": "stolenfallen1",
+  "repository": "https://github.com/stolenfallen1/InternshipBlogAPI.git",
+  "author": "Paw <stolenfallen1@gmail.com>",
   "license": "MIT",
   "private": false
 }
