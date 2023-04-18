@@ -1,5 +1,5 @@
 {
-  "name": "blog-server",
+  "name": "InternshipBlogAPI",
   "version": "1.0.0",
   "description": "backend (api) for internship blog",
   "main": "index.js",
