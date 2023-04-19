@@ -9,10 +9,16 @@
     "routes": [
         {
             "src": "/posts",
+            "methods": [
+                "POST"
+            ],
             "dest": "/server.js"
         },
         {
             "src": "/get/:postId?",
+            "methods": [
+                "GET"
+            ],
             "dest": "/server.js"
         }
     ]
