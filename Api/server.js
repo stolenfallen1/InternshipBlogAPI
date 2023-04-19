@@ -36,7 +36,18 @@ app.post('/posts', upload.single('image'), async (req, res) => {
 });
 
 // Read or Fetch blog
+app.get('/get', async (req, res) => {
+    try {
+        const get = await db.collection('posts').get()
+        const posts = get.docs.map((doc) => ({id: doc.id, ...doc.data()}))
+        res.send(posts)
+    } catch (err) {
+        console.error(err)
+        res.status(500).send('Error retrieving posts')
+    }
+})
 
+// Local server
 app.listen(3000, () => {
     console.log('Server listening on port 3000');
 });
