@@ -36,16 +36,29 @@ app.post('/posts', upload.single('image'), async (req, res) => {
 });
 
 // Read or Fetch blog
-app.get('/get', async (req, res) => {
+app.get('/get/:postId?', async (req, res) => {
     try {
-        const get = await db.collection('posts').get()
-        const posts = get.docs.map((doc) => ({id: doc.id, ...doc.data()}))
-        res.send(posts)
+        if (req.params.postId) {
+            const postId = req.params.postId;
+            const postSnapshot = await db.collection('posts').doc(postId).get();
+
+            if (!postSnapshot.exists) {
+                res.status(404).send('Post not found');
+            } else {
+                const postData = postSnapshot.data();
+                res.send({ id: postId, ...postData });
+            }
+        } else {
+            const postsSnapshot = await db.collection('posts').get();
+            const posts = postsSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+            res.send(posts);
+        }
     } catch (err) {
-        console.error(err)
-        res.status(500).send('Error retrieving posts')
+        console.error(err);
+        res.status(500).send('Error retrieving posts');
     }
-})
+});
+
 
 // Local server
 app.listen(3000, () => {
