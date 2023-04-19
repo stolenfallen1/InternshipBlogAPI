@@ -19,15 +19,13 @@ async function uploadFile(file) {
     return downloadURL[0];
 }
 
-// Add a new post with an image to Firestore
+// Create blog
 app.post('/posts', upload.single('image'), async (req, res) => {
     try {
         const { title, content } = req.body;
 
         // Upload the image to Firebase Storage
         const downloadURL = req.file ? await uploadFile(req.file) : null;
-
-        // Add the post to Firestore with the image download URL
         const postRef = await db.collection('posts').add({ title, content, image: downloadURL });
 
         res.send({ id: postRef.id });
@@ -36,6 +34,8 @@ app.post('/posts', upload.single('image'), async (req, res) => {
         res.status(500).send('Error creating post');
     }
 });
+
+// Read or Fetch blog
 
 app.listen(3000, () => {
     console.log('Server listening on port 3000');
