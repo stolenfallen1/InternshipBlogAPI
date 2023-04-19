@@ -2,24 +2,24 @@
     "version": 2,
     "builds": [
         {
-            "src": "server.js",
+            "src": "Api/server.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/posts",
+            "dest": "Api/server.js",
             "methods": [
                 "POST"
-            ],
-            "dest": "/server.js"
+            ]
         },
         {
             "src": "/get/:postId?",
+            "dest": "Api/server.js",
             "methods": [
                 "GET"
-            ],
-            "dest": "/server.js"
+            ]
         }
     ]
 }
