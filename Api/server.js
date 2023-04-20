@@ -1,10 +1,12 @@
 // Api endpoints codes here
 const express = require('express')
 const multer = require('multer')
+const cors = require('cors')
 const { db, storage } = require('../Config/firebaseConfig')
 
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 const upload = multer({
     storage: multer.memoryStorage(),
