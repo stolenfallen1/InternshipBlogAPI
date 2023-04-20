@@ -59,8 +59,10 @@ app.get('/get/:postId?', async (req, res) => {
     }
 });
 
-
 // Local server
 app.listen(3000, () => {
     console.log('Server listening on port 3000');
 });
+
+// Export the express api
+module.exports = app;
